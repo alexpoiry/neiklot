@@ -1,8 +1,6 @@
 package me.alex.language;
 
-
-
-public enum Consonants {
+public enum Consonant {
     m̥(ConsonantManner.NASAL, ConsonantPlace.BILABIAL, ConsonantPressure.PULMONIC, ConsonantVoicing.UNVOICED),
     m(ConsonantManner.NASAL, ConsonantPlace.BILABIAL, ConsonantPressure.PULMONIC, ConsonantVoicing.VOICED),
     ɱ(ConsonantManner.NASAL, ConsonantPlace.LABIODENTAL, ConsonantPressure.PULMONIC, ConsonantVoicing.VOICED),
@@ -228,7 +226,7 @@ public enum Consonants {
     private final ConsonantVoicing voicing;
 
 
-    Consonants(ConsonantManner manner, ConsonantPlace place, ConsonantPressure pressure, ConsonantVoicing voicing) {
+    Consonant(ConsonantManner manner, ConsonantPlace place, ConsonantPressure pressure, ConsonantVoicing voicing) {
         this.manner = manner;
         this.place = place;
         this.pressure = pressure;

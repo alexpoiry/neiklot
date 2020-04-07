@@ -1,16 +1,18 @@
 package me.alex.language;
 
-import java.util.EnumSet;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public enum ConsonantPressure {
-    PULMONIC(EnumSet.of(Consonants.m̥, Consonants.m, Consonants.ɱ, Consonants.n̼, Consonants.n̥, Consonants.n, Consonants.ɳ̊, Consonants.ɳ, Consonants.ɲ̊, Consonants.ɲ, Consonants.ŋ̊, Consonants.ŋ, Consonants.ɴ, Consonants.p, Consonants.b, Consonants.p̪, Consonants.b̪, Consonants.t̼, Consonants.d̼, Consonants.t, Consonants.d, Consonants.ʈ, Consonants.ɖ, Consonants.c, Consonants.ɟ, Consonants.k, Consonants.ɡ, Consonants.q, Consonants.ɢ, Consonants.ʡ, Consonants.ʔ, Consonants.ts, Consonants.dz, Consonants.t̠ʃ, Consonants.d̠ʒ, Consonants.ʈʂ, Consonants.ɖʐ, Consonants.tɕ, Consonants.dʑ, Consonants.pɸ, Consonants.bβ, Consonants.p̪f, Consonants.b̪v, Consonants.t̪θ, Consonants.d̪ð, Consonants.tɹ̝̊, Consonants.dɹ̝, /*Consonants.t̠ɹ̠̊˔, Consonants.d̠ɹ̠˔,*/ Consonants.cç, Consonants.ɟʝ, Consonants.kx, Consonants.ɡɣ, Consonants.qχ, Consonants.ɢʁ, Consonants.ʡʢ, Consonants.ʔh, Consonants.s, Consonants.z, Consonants.ʃ, Consonants.ʒ, Consonants.ʂ, Consonants.ʐ, Consonants.ɕ, Consonants.ʑ, Consonants.ɸ, Consonants.β, Consonants.f, Consonants.v, Consonants.θ̼, Consonants.ð̼, Consonants.θ, Consonants.ð, Consonants.θ̠, Consonants.ð̠, /*Consonants.ɹ̠̊˔, Consonants.ɹ̠˔, Consonants.ɻ˔,*/ Consonants.ç, Consonants.ʝ, Consonants.x, Consonants.ɣ, Consonants.χ, Consonants.ʁ, Consonants.ħ, Consonants.ʕ, Consonants.h, Consonants.ɦ, Consonants.ʋ̥, Consonants.ʋ, Consonants.ɹ̥, Consonants.ɹ, Consonants.ɻ̊, Consonants.ɻ, Consonants.j̊, Consonants.j, Consonants.ɰ̊, Consonants.ɰ, Consonants.ʔ̞, Consonants.ⱱ̟, Consonants.ⱱ, Consonants.ɾ̼, Consonants.ɾ̥, Consonants.ɾ, Consonants.ɽ̊, Consonants.ɽ, Consonants.ɢ̆, Consonants.ʡ̆, Consonants.ʙ̥, Consonants.ʙ, Consonants.r̥, Consonants.r, Consonants.ɽ̊r̥, Consonants.ɽr, Consonants.ʀ̥, Consonants.ʀ, Consonants.ʜ, Consonants.ʢ, Consonants.tɬ, Consonants.dɮ, /*Consonants.ʈɭ̊˔,*/ Consonants.cʎ̝̊, Consonants.kʟ̝̊, Consonants.ɡʟ̝, Consonants.ɬ, Consonants.ɮ, /*Consonants.ɭ̊˔, Consonants.ɭ˔,*/ Consonants.ʎ̝̊, Consonants.ʎ̝, Consonants.ʟ̝̊, Consonants.ʟ̝, Consonants.l̥, Consonants.l, Consonants.ɭ̊, Consonants.ɭ, Consonants.ʎ̥, Consonants.ʎ, Consonants.ʟ̥, Consonants.ʟ, Consonants.ʟ̠, Consonants.ɺ, Consonants.ɭ̆, Consonants.ʎ̆, Consonants.ʟ̆)),
-    EJECTIVE(EnumSet.of(null)),
-    IMPLOSIVE(EnumSet.of(null)),
-    CLICK(EnumSet.of(null));
+    PULMONIC(new HashSet<>(Arrays.asList("m̥", "m", "ɱ", "n̼", "n̥", "n", "ɳ̊", "ɳ", "ɲ̊", "ɲ", "ŋ̊", "ŋ", "ɴ", "p", "b", "p̪", "b̪", "t̼", "d̼", "t", "d", "ʈ", "ɖ", "c", "ɟ", "k", "ɡ", "q", "ɢ", "ʡ", "ʔ", "ts", "dz", "t̠ʃ", "d̠ʒ", "ʈʂ", "ɖʐ", "tɕ", "dʑ", "pɸ", "bβ", "p̪f", "b̪v", "t̪θ", "d̪ð", "tɹ̝̊", "dɹ̝", /*"t̠ɹ̠̊˔", "d̠ɹ̠˔,*/ "cç", "ɟʝ", "kx", "ɡɣ", "qχ", "ɢʁ", "ʡʢ", "ʔh", "s", "z", "ʃ", "ʒ", "ʂ", "ʐ", "ɕ", "ʑ", "ɸ", "β", "f", "v", "θ̼", "ð̼", "θ", "ð", "θ̠", "ð̠", /*"ɹ̠̊˔", "ɹ̠˔", "ɻ˔,*/ "ç", "ʝ", "x", "ɣ", "χ", "ʁ", "ħ", "ʕ", "h", "ɦ", "ʋ̥", "ʋ", "ɹ̥", "ɹ", "ɻ̊", "ɻ", "j̊", "j", "ɰ̊", "ɰ", "ʔ̞", "ⱱ̟", "ⱱ", "ɾ̼", "ɾ̥", "ɾ", "ɽ̊", "ɽ", "ɢ̆", "ʡ̆", "ʙ̥", "ʙ", "r̥", "r", "ɽ̊r̥", "ɽr", "ʀ̥", "ʀ", "ʜ", "ʢ", "tɬ", "dɮ", /*"ʈɭ̊˔,*/ "cʎ̝̊", "kʟ̝̊", "ɡʟ̝", "ɬ", "ɮ", /*"ɭ̊˔", "ɭ˔,*/ "ʎ̝̊", "ʎ̝", "ʟ̝̊", "ʟ̝", "l̥", "l", "ɭ̊", "ɭ", "ʎ̥", "ʎ", "ʟ̥", "ʟ", "ʟ̠", "ɺ", "ɭ̆", "ʎ̆", "ʟ̆"))),
+    EJECTIVE(new HashSet<>(Arrays.asList("pʼ", "tʼ", "ʈʼ", "cʼ", "kʼ", "qʼ", "ʡʼ", "t̪θʼ", "tsʼ", "t̠ʃʼ", "ʈʂʼ", "kxʼ", "qχʼ", "ɸʼ", "fʼ", "θʼ", "sʼ", "ʃʼ", "ʂʼ", "ɕʼ", "xʼ", "χʼ", "tɬʼ", "cʎ̝̊ʼ", "kʟ̝̊ʼ", "ɬʼ"))),
+    IMPLOSIVE(new HashSet<>(Arrays.asList("ʘ", "ǀ", "ǃ", "‼", "ǂ", "ʞ", "ʘ̬", "ǀ̬", "ǃ̬", "‼̬", "ǂ̬", "ʘ̃", "ǀ̃", "ǃ̃", "‼̃", "ǂ̃", "ǁ", "ǁ̬"))),
+    CLICK(new HashSet<>(Arrays.asList("ɓ", "ɗ", "ᶑ", "ʄ", "ɠ", "ʛ", "ɓ̥", "ɗ̥", "ᶑ̊", "ʄ̊", "ɠ̊", "ʛ̥")));
 
-    private final EnumSet<Consonants> consonants;
+    private final Set<String> consonants;
 
-    ConsonantPressure(final EnumSet<Consonants> consonants) {
+    ConsonantPressure(final Set<String> consonants) {
         this.consonants = consonants;
     }
 }
