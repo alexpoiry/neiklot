@@ -1,11 +1,11 @@
 package me.alex.language;
 
 public class Syllabogram {
-    private final String phonotacticConstraint;
+    private final SyllableStructure syllableStructure;
     private final LanguageIdentifier languageId;
 
-    public Syllabogram(String phonotacticConstraint, LanguageIdentifier languageId) {
-        this.phonotacticConstraint = phonotacticConstraint;
+    public Syllabogram(SyllableStructure syllableStructure, LanguageIdentifier languageId) {
+        this.syllableStructure = syllableStructure;
         this.languageId = languageId;
     }
 }
