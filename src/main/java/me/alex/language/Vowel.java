@@ -1,5 +1,7 @@
 package me.alex.language;
 
+import java.util.Random;
+
 public enum Vowel {
   i(VowelBackness.FRONT , VowelHeight.CLOSE , VowelRoundedness.UNROUNDED ),
   y(VowelBackness.FRONT , VowelHeight.CLOSE , VowelRoundedness.ROUNDED ),
@@ -41,5 +43,10 @@ public enum Vowel {
     this.backness = backness;
     this.height = height;
     this.roundedness = roundedness;
+  }
+
+  public static Vowel getRandomVowel() {
+    final Random random = new Random();
+    return values()[random.nextInt(values().length)];
   }
 }

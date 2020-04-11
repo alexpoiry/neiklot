@@ -1,5 +1,7 @@
 package me.alex.language;
 
+import java.util.Random;
+
 public enum Consonant {
     m̥(ConsonantManner.NASAL, ConsonantPlace.BILABIAL, ConsonantPressure.PULMONIC, ConsonantVoicing.UNVOICED),
     m(ConsonantManner.NASAL, ConsonantPlace.BILABIAL, ConsonantPressure.PULMONIC, ConsonantVoicing.VOICED),
@@ -231,5 +233,10 @@ public enum Consonant {
         this.place = place;
         this.pressure = pressure;
         this.voicing = voicing;
+    }
+
+    public static Consonant getRandomConsonant() {
+        final Random random = new Random();
+        return values()[random.nextInt(values().length)];
     }
 }
