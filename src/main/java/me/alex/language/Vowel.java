@@ -1,7 +1,11 @@
 package me.alex.language;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 import java.util.Random;
 
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Vowel {
   i(VowelBackness.FRONT , VowelHeight.CLOSE , VowelRoundedness.UNROUNDED ),
   y(VowelBackness.FRONT , VowelHeight.CLOSE , VowelRoundedness.ROUNDED ),
@@ -43,6 +47,11 @@ public enum Vowel {
     this.backness = backness;
     this.height = height;
     this.roundedness = roundedness;
+  }
+
+  @JsonValue
+  public String getIPASymbol() {
+    return this.name();
   }
 
   public static Vowel getRandomVowel() {

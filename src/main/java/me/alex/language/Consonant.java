@@ -1,7 +1,11 @@
 package me.alex.language;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 import java.util.Random;
 
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Consonant {
     m̥(ConsonantManner.NASAL, ConsonantPlace.BILABIAL, ConsonantPressure.PULMONIC, ConsonantVoicing.UNVOICED),
     m(ConsonantManner.NASAL, ConsonantPlace.BILABIAL, ConsonantPressure.PULMONIC, ConsonantVoicing.VOICED),
@@ -227,7 +231,6 @@ public enum Consonant {
     private final ConsonantPressure pressure;
     private final ConsonantVoicing voicing;
 
-
     Consonant(ConsonantManner manner, ConsonantPlace place, ConsonantPressure pressure, ConsonantVoicing voicing) {
         this.manner = manner;
         this.place = place;
@@ -235,8 +238,15 @@ public enum Consonant {
         this.voicing = voicing;
     }
 
+    @JsonValue
+    public String getIPASymbol() {
+        return this.name();
+    }
+
     public static Consonant getRandomConsonant() {
         final Random random = new Random();
         return values()[random.nextInt(values().length)];
     }
+
+
 }
