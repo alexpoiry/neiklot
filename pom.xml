@@ -1,20 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>me.alex.language</groupId>
     <artifactId>neiklot</artifactId>
-    <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
     <name>neiklot</name>
+    <description>A library that accepts phonological definitions and produces words based on those definitions</description>
+
+    <developers>
+        <developer>
+            <name>Alex Poiry</name>
+            <email>alex.poiry@gmail.com</email>
+            <timezone>America/Chicago</timezone>
+        </developer>
+    </developers>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jdk.version>1.8</jdk.version>
+        <jdk.next.version>12</jdk.next.version>
+        <jdk.target.version>${jdk.version}</jdk.target.version>
+        <maven.version>3.5.4</maven.version>
+        <maven.next.version>4.0.0</maven.next.version>
+
+        <!-- Plugin versions -->
+        <checkstyle.plugin.version>3.0.0</checkstyle.plugin.version>
+        <checkstyle.version>8.16</checkstyle.version>
+        <dependency.plugin.version>3.1.1</dependency.plugin.version>
+        <enforcer.plugin.version>3.0.0-M1</enforcer.plugin.version>
+        <enforcer.ceilfors.plugin.version>1.2.0</enforcer.ceilfors.plugin.version>
+        <findbugs.findsecbugs.plugin.version>1.8.0</findbugs.findsecbugs.plugin.version>
+        <findbugs.bug-pattern.plugin.version>1.4.2</findbugs.bug-pattern.plugin.version>
+        <findbugs.fb-contrib.plugin.version>7.4.3.sb</findbugs.fb-contrib.plugin.version>
+        <findbugs.monits.plugin.version>0.2.0</findbugs.monits.plugin.version>
+        <jacoco.plugin.version>0.8.2</jacoco.plugin.version>
+        <jar.plugin.version>3.1.1</jar.plugin.version>
+        <javadoc.plugin.version>3.0.1</javadoc.plugin.version>
+        <modernizer.plugin.version>1.7.1</modernizer.plugin.version>
+        <pmd.plugin.version>3.11.0</pmd.plugin.version>
+        <pmd.version>6.10.0</pmd.version>
+        <project.info.reports.plugin.version>3.0.0</project.info.reports.plugin.version>
+        <site.doxia-module-markdown.plugin.version>1.8</site.doxia-module-markdown.plugin.version>
+        <site.wagon-ssh.plugin.version>3.3.1</site.wagon-ssh.plugin.version>
+
+        <site.plugin.version>3.7.1</site.plugin.version>
+        <sortpom.plugin.version>2.10.0</sortpom.plugin.version>
+        <spotbugs.plugin.version>3.1.10</spotbugs.plugin.version>
+        <spotbugs.version>3.1.10</spotbugs.version>
+        <surefire.plugin.version>2.22.1</surefire.plugin.version>
+
+        <animal.sniffer.enforcer.rule.version>1.17</animal.sniffer.enforcer.rule.version>
+        <animal.sniffer.signature.artifact>java18</animal.sniffer.signature.artifact>
+        <animal.sniffer.signature.version>1.0</animal.sniffer.signature.version>
+        <extra.enforcer.rules.version>1.1</extra.enforcer.rules.version>
+
+        <cpd.excludeFromFailureFile />
+        <clover.plugin.targetPercentage>0</clover.plugin.targetPercentage>
+        <coverage.target.percentage>${clover.plugin.targetPercentage}</coverage.target.percentage>
+        <dependencyAnalyze.failBuild>true</dependencyAnalyze.failBuild>
+        <enforcer.requirePluginVersions.banSnapshots>true</enforcer.requirePluginVersions.banSnapshots>
+        <findbugs.excludeFilterFile />
+        <maven.enforcer.version.message>Project version (${project.version}) must follow semver (allowing optional PATCH version specifier). See http://semver.org/ for more information.</maven.enforcer.version.message>
+        <maven.enforcer.version.regex>^(0|[1-9]\d*)\.(0|[1-9]\d*)(\.(0|[1-9]\d*))?(-(0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(\.(0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*)?(\+[0-9a-zA-Z-]+(\.[0-9a-zA-Z-]+)*)?$</maven.enforcer.version.regex>
+        <pmd.excludeFromFailureFile />
+
+        <!--<pmd.ruleset>${maven.conventions.baseUrl}/pmd/pmd-rules.xml</pmd.ruleset>-->
+
+        <surefire.argLine>-Xmx1024m</surefire.argLine>
+        <surefire.runOrder>random</surefire.runOrder>
+        <surefire.trimStackTrace>false</surefire.trimStackTrace>
+        <failsafe.argLine>${surefire.argLine}</failsafe.argLine>
+        <failsafe.runOrder>${surefire.runOrder}</failsafe.runOrder>
+        <failsafe.trimStackTrace>${surefire.trimStackTrace}</failsafe.trimStackTrace>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.10.3</version>
+            <scope>compile</scope>
+        </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
@@ -28,9 +96,9 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>2.10.3</version>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>annotations</artifactId>
+            <version>3.0.0</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -54,7 +122,183 @@
     </dependencies>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>com.github.ekryd.sortpom</groupId>
+                    <artifactId>sortpom-maven-plugin</artifactId>
+                    <version>${sortpom.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>com.github.spotbugs</groupId>
+                    <artifactId>spotbugs-maven-plugin</artifactId>
+                    <version>${spotbugs.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>${checkstyle.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>${dependency.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>${enforcer.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>${surefire.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${jar.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${javadoc.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-pmd-plugin</artifactId>
+                    <version>${pmd.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-project-info-reports-plugin</artifactId>
+                    <version>${project.info.reports.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>${site.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${surefire.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-report-plugin</artifactId>
+                    <version>${surefire.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.gaul</groupId>
+                    <artifactId>modernizer-maven-plugin</artifactId>
+                    <version>${modernizer.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>${jacoco.plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
+            <plugin>
+                <!-- To sort all poms, run mvn sortpom:sort -->
+                <groupId>com.github.ekryd.sortpom</groupId>
+                <artifactId>sortpom-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <createBackupFile>false</createBackupFile>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <expandEmptyElements>false</expandEmptyElements>
+                    <sortDependencies>scope,groupId,artifactId</sortDependencies>
+                    <sortPlugins>groupId,artifactId</sortPlugins>
+                    <nrOfIndentSpace>4</nrOfIndentSpace>
+                    <keepBlankLines>true</keepBlankLines>
+                    <verifyFail>Sort</verifyFail>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <!-- SpotBugs analyzes bytecode and must be run post-compilation -->
+                        <phase>process-test-classes</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.github.spotbugs</groupId>
+                        <artifactId>spotbugs</artifactId>
+                        <version>${spotbugs.version}</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <effort>Max</effort>
+                    <threshold>Low</threshold>
+                    <failOnError>true</failOnError>
+                    <excludeFilterFile>${findbugs.excludeFilterFile}</excludeFilterFile>
+                    <plugins>
+                        <plugin>
+                            <groupId>com.h3xstream.findsecbugs</groupId>
+                            <artifactId>findsecbugs-plugin</artifactId>
+                            <version>${findbugs.findsecbugs.plugin.version}</version>
+                        </plugin>
+                        <plugin>
+                            <groupId>jp.skypencil.findbugs.slf4j</groupId>
+                            <artifactId>bug-pattern</artifactId>
+                            <version>${findbugs.bug-pattern.plugin.version}</version>
+                        </plugin>
+                        <plugin>
+                            <groupId>com.mebigfatguy.fb-contrib</groupId>
+                            <artifactId>fb-contrib</artifactId>
+                            <version>${findbugs.fb-contrib.plugin.version}</version>
+                        </plugin>
+                        <plugin>
+                            <groupId>com.monits</groupId>
+                            <artifactId>findbugs-plugin</artifactId>
+                            <version>${findbugs.monits.plugin.version}</version>
+                        </plugin>
+                    </plugins>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <configLocation>./src/resources/checkstyle.xml</configLocation>
+                            <encoding>UTF-8</encoding>
+                            <consoleOutput>true</consoleOutput>
+                            <logViolationsToConsole>true</logViolationsToConsole>
+                            <failOnViolation>true</failOnViolation>
+                            <violationSeverity>warning</violationSeverity>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.puppycrawl.tools</groupId>
+                        <artifactId>checkstyle</artifactId>
+                        <version>${checkstyle.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -63,6 +307,291 @@
                     <source>11</source>
                     <target>11</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>analyze-only</goal>
+                        </goals>
+                        <configuration>
+                            <failOnWarning>${dependencyAnalyze.failBuild}</failOnWarning>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <ignoreNonCompile>true</ignoreNonCompile>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <!-- rules from maven-enforcer-plugin -->
+                                <requireMavenVersion>
+                                    <version>[${maven.version},${maven.next.version})</version>
+                                </requireMavenVersion>
+                                <requireJavaVersion>
+                                    <version>[${jdk.version},${jdk.next.version})</version>
+                                </requireJavaVersion>
+                                <reactorModuleConvergence />
+                                <dependencyConvergence />
+                                <requireUpperBoundDeps />
+                                <requireProperty>
+                                    <property>project.version</property>
+                                    <message>${maven.enforcer.version.message}</message>
+                                    <regex>${maven.enforcer.version.regex}</regex>
+                                    <regexMessage>${maven.enforcer.version.message}</regexMessage>
+                                </requireProperty>
+
+                                <!-- rules from extra-enforcer-rules -->
+                                <enforceBytecodeVersion>
+                                    <maxJdkVersion>${jdk.target.version}</maxJdkVersion>
+                                </enforceBytecodeVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>check-signatures</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <!-- rules from animal-sniffer-enforcer-rule -->
+                                <checkSignatureRule implementation="org.codehaus.mojo.animal_sniffer.enforcer.CheckSignatureRule">
+                                    <signature>
+                                        <groupId>org.codehaus.mojo.signature</groupId>
+                                        <artifactId>${animal.sniffer.signature.artifact}</artifactId>
+                                        <version>${animal.sniffer.signature.version}</version>
+                                    </signature>
+                                </checkSignatureRule>
+                            </rules>
+                            <skip>true</skip>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.ceilfors.maven.plugin</groupId>
+                        <artifactId>enforcer-rules</artifactId>
+                        <version>${enforcer.ceilfors.plugin.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>animal-sniffer-enforcer-rule</artifactId>
+                        <version>${animal.sniffer.enforcer.rule.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>extra-enforcer-rules</artifactId>
+                        <version>${extra.enforcer.rules.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <!--IMPORTANT: Surefire/Failsafe configurations should likely be the same -->
+                <configuration>
+                    <argLine>${failsafe.argLine}</argLine>
+                    <runOrder>${failsafe.runOrder}</runOrder>
+                    <trimStackTrace>${failsafe.trimStackTrace}</trimStackTrace>
+                    <systemPropertyVariables>
+                        <java.awt.headless>true</java.awt.headless>
+                    </systemPropertyVariables>
+                    <!-- It's better to use isolated classloaders for our classpath scanning cases -->
+                    <useSystemClassLoader>false</useSystemClassLoader>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>pre-site</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <configuration>
+                    <targetJdk>${jdk.target.version}</targetJdk>
+                    <failOnViolation>true</failOnViolation>
+                    <rulesets>
+                        <ruleset>${pmd.ruleset}</ruleset>
+                    </rulesets>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>net.sourceforge.pmd</groupId>
+                        <artifactId>pmd-core</artifactId>
+                        <version>${pmd.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>net.sourceforge.pmd</groupId>
+                        <artifactId>pmd-java</artifactId>
+                        <version>${pmd.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>net.sourceforge.pmd</groupId>
+                        <artifactId>pmd-javascript</artifactId>
+                        <version>${pmd.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>net.sourceforge.pmd</groupId>
+                        <artifactId>pmd-jsp</artifactId>
+                        <version>${pmd.version}</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>pmd-check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <phase>process-sources</phase>
+                        <configuration>
+                            <printFailingErrors>true</printFailingErrors>
+                            <excludeFromFailureFile>${pmd.excludeFromFailureFile}</excludeFromFailureFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>cpd-check</id>
+                        <goals>
+                            <goal>cpd-check</goal>
+                        </goals>
+                        <phase>process-sources</phase>
+                        <configuration>
+                            <printFailingErrors>true</printFailingErrors>
+                            <excludeFromFailureFile>${cpd.excludeFromFailureFile}</excludeFromFailureFile>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.doxia</groupId>
+                        <artifactId>doxia-module-markdown</artifactId>
+                        <version>${site.doxia-module-markdown.plugin.version}</version>
+                    </dependency>
+                    <dependency>
+                        <!-- add support for ssh/scp -->
+                        <groupId>org.apache.maven.wagon</groupId>
+                        <artifactId>wagon-ssh</artifactId>
+                        <version>${site.wagon-ssh.plugin.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <!--IMPORTANT: Surefire/Failsafe configurations should likely be the same -->
+                <configuration>
+                    <argLine>@{jacoco.surefire.argLine} ${surefire.argLine}</argLine>
+                    <runOrder>${surefire.runOrder}</runOrder>
+                    <trimStackTrace>${surefire.trimStackTrace}</trimStackTrace>
+                    <systemPropertyVariables>
+                        <java.awt.headless>true</java.awt.headless>
+                    </systemPropertyVariables>
+                    <!-- It's better to use isolated classloaders for our classpath scanning cases -->
+                    <useSystemClassLoader>false</useSystemClassLoader>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.gaul</groupId>
+                <artifactId>modernizer-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>modernizer</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <javaVersion>${jdk.target.version}</javaVersion>
+                    <!-- Excluding tests because the modernizer will fail if attempting -->
+                    <!-- to mock a method in an external api that returns a legacy type -->
+                    <includeTestClasses>false</includeTestClasses>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>default-prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                        <configuration>
+                            <propertyName>jacoco.surefire.argLine</propertyName>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>default-check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <rule>
+                                    <limits>
+                                        <limit>
+                                            <counter>INSTRUCTION</counter>
+                                            <minimum>${coverage.target.percentage}.0%</minimum>
+                                        </limit>
+                                    </limits>
+                                </rule>
+                            </rules>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>default-audit-check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <haltOnFailure>false</haltOnFailure>
+                            <rules>
+                                <rule>
+                                    <limits>
+                                        <limit>
+                                            <counter>INSTRUCTION</counter>
+                                            <maximum>${coverage.target.percentage}.9%</maximum>
+                                        </limit>
+                                    </limits>
+                                </rule>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

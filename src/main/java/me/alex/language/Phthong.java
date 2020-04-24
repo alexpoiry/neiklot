@@ -1,13 +1,19 @@
 package me.alex.language;
 
 import com.google.common.base.Objects;
-
 import java.util.EnumSet;
 
+/**
+ * This class represents vowel sounds in groups, such as diphthongs.
+ */
 public class Phthong {
-  private EnumSet<Vowel> nPhthong;
+  private EnumSet<Vowel> nphthong;
 
-  public Phthong() {}
+  /**
+   * Default constructor (for Jackson purposes). May be able to remove.
+   */
+  public Phthong() {
+  }
 
   /*
   public Phthong(final EnumSet<Vowel> nPhthong) {
@@ -17,33 +23,47 @@ public class Phthong {
       throw new IllegalArgumentException("nPhthongs may not contain more than 3 vowels");
     }
   }
-   */
+  */
 
-  public EnumSet<Vowel> getnPhthong() {
-    return nPhthong;
+  /**
+   * Gets the vowel group.
+   *
+   * @return an {@link EnumSet} of {@link Vowel}s
+   */
+  public EnumSet<Vowel> getNphthong() {
+    return nphthong;
   }
 
-  public void setnPhthong(EnumSet<Vowel> nPhthong) {
-    this.nPhthong = nPhthong;
+  /**
+   * Sets a vowel group.
+   *
+   * @param nphthong an {@link EnumSet} of {@link Vowel}s
+   */
+  public void setNphthong(EnumSet<Vowel> nphthong) {
+    this.nphthong = nphthong;
   }
 
   @Override
   public String toString() {
-    return "Phthong{" +
-            "nPhthong=" + nPhthong +
-            '}';
+    return "Phthong{"
+      + "nPhthong=" + nphthong
+      + '}';
   }
 
   @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    Phthong phthong = (Phthong) o;
-    return Objects.equal(nPhthong, phthong.nPhthong);
+  public boolean equals(final Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    final Phthong phthong = (Phthong) o;
+    return Objects.equal(nphthong, phthong.nphthong);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hashCode(nPhthong);
+    return Objects.hashCode(nphthong);
   }
 }

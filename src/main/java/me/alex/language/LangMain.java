@@ -1,22 +1,22 @@
 package me.alex.language;
 
-import static me.alex.language.Consonant.*;
-import static me.alex.language.Vowel.*;
-
-
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-
 import java.io.File;
 import java.io.IOException;
-import java.util.Collections;
-import java.util.EnumSet;
-import java.util.HashSet;
-import java.util.Set;
 
+/**
+ * This is the main entry point for the program. Currently it is primarily for testing purposes.
+ */
 public class LangMain {
+
+  /**
+   * The actual main method.
+   *
+   * @param args the list of arguments for main
+   */
   public static void main(String... args) {
     System.out.println("Hello Word");
 
@@ -25,9 +25,9 @@ public class LangMain {
 
     try {
       PhonologyDefinition englishDef
-              = mapper.readValue(new File("./src/resources/englishPhonolgyDefinitions.json"), PhonologyDefinition.class);
+          = mapper.readValue(new File("./src/resources/englishPhonolgyDefinitions.json"), PhonologyDefinition.class);
 
-      final SyllableStructure syllableStructure = new SyllableStructure("CCCVCCCCC", 3, 1,5);
+      final SyllableStructure syllableStructure = new SyllableStructure("CCCVCCCCC", 3, 1, 5);
       final Word word = new Word(syllableStructure, englishDef);
       System.out.println(word.generateMonosyllable());
     } catch (JsonGenerationException ex) {
@@ -38,4 +38,5 @@ public class LangMain {
       ex.printStackTrace();
     }
   }
+
 }

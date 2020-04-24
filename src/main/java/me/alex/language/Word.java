@@ -1,18 +1,36 @@
 package me.alex.language;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Random;
 
+/**
+ * A class that represents a single word.
+ */
 public class Word {
   private final SyllableStructure syllableStructure;
   private final PhonologyDefinition phonologyDefinition;
   private final Random random;
 
+  /**
+   * Constructor for the word class.
+   *
+   * @param syllableStructure the word's {@link SyllableStructure}
+   * @param phonologyDefinition the word's {@link PhonologyDefinition}
+   */
   public Word(final SyllableStructure syllableStructure, final PhonologyDefinition phonologyDefinition) {
     this.syllableStructure = syllableStructure;
     this.phonologyDefinition = phonologyDefinition;
     this.random = new Random();
   }
 
+  /**
+   * Generate a single syllable based upon the word's {@link SyllableStructure}.
+   *
+   * @return a single valid syllable
+   */
   public String generateMonosyllable() {
     final StringBuilder word = new StringBuilder();
     final Syllable syllable;
@@ -31,6 +49,13 @@ public class Word {
     return word.toString();
   }
 
+  /**
+   * A helper method that gets a list of random consonants.
+   *
+   * @param validConsonants an {@link EnumSet} of valid {@link Consonant} values
+   * @param consonantSize the number of consecutive consonants to generate
+   * @return a {@link List} of random but valid consonants of a given length
+   */
   private List<Consonant> getRandomConsontants(final EnumSet<Consonant> validConsonants, final int consonantSize) {
     final List<Consonant> consonants = new ArrayList<>();
     for (int i = 0; i < consonantSize; i++) {
@@ -56,15 +81,15 @@ public class Word {
   private <E> Optional<Consonant> getRandomConsonant(final EnumSet<Consonant> validConsonants) {
 
     return validConsonants.stream()
-            .skip((int) (validConsonants.size() * random.nextDouble()))
-            .findFirst();
+      .skip((int) (validConsonants.size() * random.nextDouble()))
+      .findFirst();
   }
 
   private <E> Optional<Vowel> getRandomVowel(final EnumSet<Vowel> validVowels) {
 
     return validVowels.stream()
-            .skip((int) (validVowels.size() * random.nextDouble()))
-            .findFirst();
+      .skip((int) (validVowels.size() * random.nextDouble()))
+      .findFirst();
   }
 
   private boolean getRandomBoolean() {

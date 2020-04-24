@@ -1,6 +1,6 @@
 package me.alex.language;
 
 public enum ConsonantVoicing {
-    VOICED,
-    UNVOICED
+  VOICED,
+  UNVOICED
 }
