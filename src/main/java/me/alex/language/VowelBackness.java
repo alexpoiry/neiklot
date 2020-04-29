@@ -15,4 +15,8 @@ public enum VowelBackness {
   VowelBackness(final Set<String> vowels) {
     this.vowels = vowels;
   }
+
+  public static String[] getNames(Class<? extends Enum<?>> e) {
+    return Arrays.stream(e.getEnumConstants()).map(Enum::name).toArray(String[]::new);
+  }
 }

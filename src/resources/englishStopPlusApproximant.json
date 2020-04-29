@@ -1,0 +1,9 @@
+{
+  "languageIdentifier" : {
+    "languageName" : "English"
+  },
+  "ruleIdentifier" : "Stop plus approximant",
+  "initialDefinition" : [ "STOP" ],
+  "validSubsequents" : [ "APPROXIMANT", "LATERAL_APPROXIMANT" ],
+  "exceptions" : [ "j" ]
+}

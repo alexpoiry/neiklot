@@ -46,7 +46,7 @@ public class Phthong {
   @Override
   public String toString() {
     return "Phthong{"
-      + "nPhthong=" + nphthong
+      + "nphthong=" + nphthong
       + '}';
   }
 

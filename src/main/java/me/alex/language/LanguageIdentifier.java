@@ -55,4 +55,34 @@ public final class LanguageIdentifier {
   public int hashCode() {
     return Objects.hashCode(languageName);
   }
+
+  /*
+  @Override
+  public final String toString() {
+    return MoreObjects.toStringHelper(this)
+      .add("dataSource", dataSource)
+      .add("statusTrackerService", statusTrackerService)
+      .add("maven2CoordinatesFactory", maven2CoordinatesFactory)
+      .toString();
+  }
+
+  @Override
+  public final boolean equals(final Object obj) {
+    if (obj == this) {
+      return true;
+    } else if (!(obj instanceof CompletedScanSyncSource)) {
+      return false;
+    }
+
+    final CompletedScanSyncSource other = (CompletedScanSyncSource) obj;
+    return Objects.equals(this.dataSource, other.dataSource)
+        && Objects.equals(this.statusTrackerService, other.statusTrackerService)
+        && Objects.equals(this.maven2CoordinatesFactory, other.maven2CoordinatesFactory);
+  }
+
+  @Override
+  public final int hashCode() {
+    return Objects.hash(this.dataSource, statusTrackerService, maven2CoordinatesFactory);
+  }
+   */
 }

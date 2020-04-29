@@ -2,6 +2,7 @@ package me.alex.language;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -66,5 +67,9 @@ public enum Vowel {
   @JsonValue
   public String getIpaSymbol() {
     return this.name();
+  }
+
+  public static String[] getNames(Class<? extends Enum<?>> e) {
+    return Arrays.stream(e.getEnumConstants()).map(Enum::name).toArray(String[]::new);
   }
 }

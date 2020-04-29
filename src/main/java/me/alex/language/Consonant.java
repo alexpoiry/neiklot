@@ -2,6 +2,8 @@ package me.alex.language;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -270,4 +272,34 @@ public enum Consonant {
     return this.name();
   }
 
+  public ConsonantManner getManner() {
+    return manner;
+  }
+
+  public ConsonantPlace getPlace() {
+    return place;
+  }
+
+  public ConsonantPressure getPressure() {
+    return pressure;
+  }
+
+  public ConsonantVoicing getVoicing() {
+    return voicing;
+  }
+
+  /**
+   * This gets the articulation information for a consonant as a list of strings.
+   *
+   * @return the manner, place, pressure, and voicing information for a specific consonant
+   */
+  public List<String> getConsonantDescription() {
+    final ArrayList<String> descriptiveStrings = new ArrayList<>();
+    descriptiveStrings.add(this.place.name());
+    descriptiveStrings.add(this.manner.name());
+    descriptiveStrings.add(this.pressure.name());
+    descriptiveStrings.add(this.voicing.name());
+
+    return descriptiveStrings;
+  }
 }
