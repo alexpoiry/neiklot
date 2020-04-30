@@ -27,7 +27,7 @@
 
         <!-- Plugin versions -->
         <checkstyle.plugin.version>3.0.0</checkstyle.plugin.version>
-        <checkstyle.version>8.16</checkstyle.version>
+        <checkstyle.version>8.29</checkstyle.version>
         <dependency.plugin.version>3.1.1</dependency.plugin.version>
         <enforcer.plugin.version>3.0.0-M1</enforcer.plugin.version>
         <enforcer.ceilfors.plugin.version>1.2.0</enforcer.ceilfors.plugin.version>
