@@ -2,7 +2,7 @@
   "languageIdentifier" : {
     "languageName" : "English"
   },
-  "consonants" : [ "m", "n", "ŋ", "p", "b", "t", "d", "k", "ɡ", "t̠ʃ", "d̠ʒ", "s", "z", "ʃ", "ʒ", "f", "v", "θ", "ð", "x", "h", "j", "ɹ", "l" ],
+  "consonants" : [ "m", "n", "ŋ", "p", "b", "t", "d", "k", "ɡ", "t̠ʃ", "d̠ʒ", "s", "z", "ʃ", "ʒ", "f", "v", "θ", "ð", "x", "h", "j", "ɹ", "l", "w" ],
   "vowels" : [ "i", "u", "ɪ", "ʊ", "e", "ə", "ɛ", "ɜ", "ʌ", "ɔ", "æ", "ɑ" ],
   "twoOrMorePhthongs" : [ {
     "nphthong" : [ "ɪ", "ɔ" ]

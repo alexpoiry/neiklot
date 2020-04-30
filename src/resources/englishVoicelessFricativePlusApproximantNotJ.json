@@ -1,0 +1,10 @@
+{
+  "languageIdentifier" : {
+    "languageName" : "English"
+  },
+  "ruleIdentifier" : "Voiceless fricative plus approximant",
+  "initialDefinition" : [ "UNVOICED", "FRICATIVE" ],
+  "logicalAndInclusions" : [ ],
+  "logicalOrInclusions" : [ "APPROXIMANT" ],
+  "exceptions" : [ "j" ]
+}

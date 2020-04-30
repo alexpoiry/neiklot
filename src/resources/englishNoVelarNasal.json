@@ -1,0 +1,10 @@
+{
+  "languageIdentifier" : {
+    "languageName" : "English"
+  },
+  "ruleIdentifier" : "No velar nasal",
+  "initialDefinition" : [ "CONSONANT" ],
+  "logicalAndInclusions" : [ ],
+  "logicalOrInclusions" : [ ],
+  "exceptions" : [ "ŋ" ]
+}

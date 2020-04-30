@@ -1,5 +1,6 @@
 package me.alex.language;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import java.util.Collections;
 import java.util.EnumSet;
@@ -13,15 +14,9 @@ public class OnsetRule {
   private LanguageIdentifier languageIdentifier;
   private String ruleIdentifier;
   private List<String> initialDefinition;
-  private List<String> validSubsequents;
+  private List<String> logicalAndInclusions;
+  private List<String> logicalOrInclusions;
   private List<String> exceptions;
-
-  //public OnsetRule(final List<String> initialDefinition, final List<String> validSubsequents,
-  //  final List<String> exceptions) {
-  //  this.initialDefinition = initialDefinition;
-  //  this.validSubsequents = validSubsequents;
-  //  this.exceptions = exceptions;
-  //}
 
   /**
    * Default constructor (for Jackson purposes). May be able to remove.
@@ -38,20 +33,32 @@ public class OnsetRule {
   public EnumSet<Consonant> getValidConsonants(final Consonant initial, final EnumSet<Consonant> validConsonants) {
     if (initial.getConsonantDescription().containsAll(this.initialDefinition)) {
       return validConsonants.stream()
-        .filter(consonant -> !Collections.disjoint(consonant.getConsonantDescription(), validSubsequents))
         .filter(consonant -> {
-          for (final String exception : exceptions) {
-            if (consonant.getIpaSymbol().equals(exception)) {
-              return false;
+          if (logicalAndInclusions != null && !logicalAndInclusions.isEmpty()) {
+            return consonant.getConsonantDescription().containsAll(logicalAndInclusions);
+          }
+          return true;
+        })
+        .filter(consonant -> {
+          if (logicalOrInclusions != null && !logicalOrInclusions.isEmpty()) {
+            return !Collections.disjoint(consonant.getConsonantDescription(), logicalOrInclusions);
+          }
+          return true;
+        })
+        .filter(consonant -> {
+          if (exceptions != null && !exceptions.isEmpty()) {
+            for (final String exception : exceptions) {
+              if (consonant.getIpaSymbol().equals(exception)) {
+                return false;
+              }
             }
           }
-
           return true;
         })
         .collect(Collectors.toCollection(() -> EnumSet.noneOf(Consonant.class)));
     }
 
-    return validConsonants;
+    return EnumSet.noneOf(Consonant.class);
   }
 
   public LanguageIdentifier getLanguageIdentifier() {
@@ -78,12 +85,20 @@ public class OnsetRule {
     this.initialDefinition = initialDefinition;
   }
 
-  public List<String> getValidSubsequents() {
-    return validSubsequents;
+  public List<String> getLogicalAndInclusions() {
+    return logicalAndInclusions;
   }
 
-  public void setValidSubsequents(final List<String> validSubsequents) {
-    this.validSubsequents = validSubsequents;
+  public void setLogicalAndInclusions(final List<String> logicalAndInclusions) {
+    this.logicalAndInclusions = logicalAndInclusions;
+  }
+
+  public List<String> getLogicalOrInclusions() {
+    return logicalOrInclusions;
+  }
+
+  public void setLogicalOrInclusions(final List<String> logicalOrInclusions) {
+    this.logicalOrInclusions = logicalOrInclusions;
   }
 
   public List<String> getExceptions() {
@@ -94,16 +109,16 @@ public class OnsetRule {
     this.exceptions = exceptions;
   }
 
-
   @Override
   public String toString() {
-    return "OnsetRule{"
-      + "languageIdentifier=" + languageIdentifier
-      + ", ruleIdentifier='" + ruleIdentifier + '\''
-      + ", initialDefinition=" + initialDefinition
-      + ", validSubsequents=" + validSubsequents
-      + ", exceptions=" + exceptions
-      + '}';
+    return MoreObjects.toStringHelper(this)
+      .add("languageIdentifier", languageIdentifier)
+      .add("ruleIdentifier", ruleIdentifier)
+      .add("initialDefinition", initialDefinition)
+      .add("logicalAndInclusions", logicalAndInclusions)
+      .add("logicalOrInclusions", logicalOrInclusions)
+      .add("exceptions", exceptions)
+      .toString();
   }
 
   @Override
@@ -115,15 +130,17 @@ public class OnsetRule {
       return false;
     }
     final OnsetRule onsetRule = (OnsetRule) o;
-    return Objects.equal(languageIdentifier, onsetRule.languageIdentifier)
-      && Objects.equal(ruleIdentifier, onsetRule.ruleIdentifier)
-      && Objects.equal(initialDefinition, onsetRule.initialDefinition)
-      && Objects.equal(validSubsequents, onsetRule.validSubsequents)
-      && Objects.equal(exceptions, onsetRule.exceptions);
+    return Objects.equal(getLanguageIdentifier(), onsetRule.getLanguageIdentifier())
+      && Objects.equal(getRuleIdentifier(), onsetRule.getRuleIdentifier())
+      && Objects.equal(getInitialDefinition(), onsetRule.getInitialDefinition())
+      && Objects.equal(getLogicalAndInclusions(), onsetRule.getLogicalAndInclusions())
+      && Objects.equal(getLogicalOrInclusions(), onsetRule.getLogicalOrInclusions())
+      && Objects.equal(getExceptions(), onsetRule.getExceptions());
   }
 
   @Override
   public int hashCode() {
-    return Objects.hashCode(languageIdentifier, ruleIdentifier, initialDefinition, validSubsequents, exceptions);
+    return Objects.hashCode(getLanguageIdentifier(), getRuleIdentifier(), getInitialDefinition(), getLogicalAndInclusions(),
+      getLogicalOrInclusions(), getExceptions());
   }
 }

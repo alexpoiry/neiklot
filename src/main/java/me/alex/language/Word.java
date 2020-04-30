@@ -5,6 +5,7 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+import java.util.Set;
 
 /**
  * A class that represents a single word.
@@ -12,6 +13,7 @@ import java.util.Random;
 public class Word {
   private final SyllableStructure syllableStructure;
   private final PhonologyDefinition phonologyDefinition;
+  private final Set<OnsetRule> onsetRules;
   private final Random random;
 
   /**
@@ -20,9 +22,11 @@ public class Word {
    * @param syllableStructure the word's {@link SyllableStructure}
    * @param phonologyDefinition the word's {@link PhonologyDefinition}
    */
-  public Word(final SyllableStructure syllableStructure, final PhonologyDefinition phonologyDefinition) {
+  public Word(final SyllableStructure syllableStructure, final PhonologyDefinition phonologyDefinition,
+              final Set<OnsetRule> onsetRules) {
     this.syllableStructure = syllableStructure;
     this.phonologyDefinition = phonologyDefinition;
+    this.onsetRules = onsetRules;
     this.random = new Random();
   }
 
@@ -33,17 +37,17 @@ public class Word {
    */
   public String generateMonosyllable() {
     final StringBuilder word = new StringBuilder();
-    final Syllable syllable;
     final EnumSet<Consonant> validConsonants = phonologyDefinition.getConsonants();
     final EnumSet<Vowel> validVowels = phonologyDefinition.getVowels();
+    final int onsetSize = getRandomIntBetweenTwoValues(0, syllableStructure.onsetSize);
 
-    int onsetSize = getRandomIntBetweenTwoValues(0, syllableStructure.onsetSize);
-    getRandomConsontants(validConsonants, onsetSize).forEach(x -> word.append(x.name()));
+    final Syllable syllable = new Syllable(onsetRules, validConsonants, onsetSize);
+    syllable.getOnset().forEach(consonant -> word.append(consonant.getIpaSymbol()));
 
     final Optional<Vowel> vowel = getRandomVowel(validVowels);
     vowel.ifPresent(word::append);
 
-    int codaSize = getRandomIntBetweenTwoValues(0, syllableStructure.codaSize);
+    final int codaSize = getRandomIntBetweenTwoValues(0, syllableStructure.codaSize);
     getRandomConsontants(validConsonants, codaSize).forEach(x -> word.append(x.name()));
 
     return word.toString();

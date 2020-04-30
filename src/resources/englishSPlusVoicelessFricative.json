@@ -1,0 +1,10 @@
+{
+  "languageIdentifier" : {
+    "languageName" : "English"
+  },
+  "ruleIdentifier" : "s plus voiceless fricative",
+  "initialDefinition" : [ "s" ],
+  "logicalAndInclusions" : [ "FRICATIVE", "UNVOICED" ],
+  "logicalOrInclusions" : [ ],
+  "exceptions" : [ "s", "ʃ", "x", "h" ]
+}

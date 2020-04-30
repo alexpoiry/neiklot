@@ -11,6 +11,8 @@ import java.util.Set;
 public enum ConsonantPlace {
   BILABIAL(new HashSet<>(Arrays.asList("m̥", "m", "p", "b", "pɸ", "bβ", "ɸ", "β", "ⱱ̟", "ʙ̥", "ʙ"))),
   LABIODENTAL(new HashSet<>(Arrays.asList("ɱ", "p̪", "b̪", "p̪f", "b̪v", "f", "v", "ʋ̥", "ʋ", "ⱱ"))),
+  LABIAL_PALATAL(new HashSet<>(Arrays.asList("ɥ̊", "ɥ"))),
+  LABIAL_VELAR(new HashSet<>(Arrays.asList("ʍ", "w"))),
   LINGUOLABIAL(new HashSet<>(Arrays.asList("n̼", "t̼", "d̼", "θ̼", "ð̼", "ɾ̼"))),
   DENTAL(new HashSet<>(Arrays.asList("t̪θ", "d̪ð", "θ", "ð"))),
   ALVEOLAR(new HashSet<>(Arrays.asList("n̥", "n", "t", "d", "ts", "dz", "tɹ̝̊", "dɹ̝", "s", "z", "θ̠", "ð̠", "ɹ̥", "ɹ",

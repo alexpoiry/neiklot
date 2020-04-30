@@ -3,8 +3,10 @@ package me.alex.language;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 /**
  * A class representing all valid IPA consonants along with their manner, place, pressure, and voicing of articulation.
@@ -167,7 +169,16 @@ public enum Consonant {
   ɺ(ConsonantManner.LATERAL_TAP_FLAP, ConsonantPlace.ALVEOLAR, ConsonantPressure.PULMONIC, ConsonantVoicing.VOICED),
   ɭ̆(ConsonantManner.LATERAL_TAP_FLAP, ConsonantPlace.RETROFLEX, ConsonantPressure.PULMONIC, ConsonantVoicing.VOICED),
   ʎ̆(ConsonantManner.LATERAL_TAP_FLAP, ConsonantPlace.PALATAL, ConsonantPressure.PULMONIC, ConsonantVoicing.VOICED),
-  ʟ̆(ConsonantManner.LATERAL_TAP_FLAP, ConsonantPlace.VELAR, ConsonantPressure.PULMONIC, ConsonantVoicing.VOICED);
+  ʟ̆(ConsonantManner.LATERAL_TAP_FLAP, ConsonantPlace.VELAR, ConsonantPressure.PULMONIC, ConsonantVoicing.VOICED),
+
+  /* Co-Articulated Consonants */
+  ɥ̊(ConsonantManner.APPROXIMANT, ConsonantPlace.LABIAL_PALATAL, ConsonantPressure.PULMONIC, ConsonantVoicing.UNVOICED),
+  ɥ(ConsonantManner.APPROXIMANT, ConsonantPlace.LABIAL_PALATAL, ConsonantPressure.PULMONIC, ConsonantVoicing.VOICED),
+  ʍ(ConsonantManner.APPROXIMANT, ConsonantPlace.LABIAL_VELAR, ConsonantPressure.PULMONIC, ConsonantVoicing.UNVOICED),
+  w(ConsonantManner.APPROXIMANT, ConsonantPlace.LABIAL_VELAR, ConsonantPressure.PULMONIC, ConsonantVoicing.VOICED);
+
+  //"ɥ̊", "ɥ", "ʍ", "w"
+
   /*
     pʼ(manner, ConsonantPlace., pressure, ConsonantVoicing.),
     tʼ(manner, ConsonantPlace., pressure, ConsonantVoicing.),
@@ -242,6 +253,10 @@ public enum Consonant {
     h̃(manner, ConsonantPlace., pressure, ConsonantVoicing.);
   */
 
+  private static final String FRICATIVE = "FRICATIVE";
+  private static final String AFFRICATE = "AFFRICATE";
+  private static final String APPROXIMANT = "APPROXIMANT";
+
   private final ConsonantManner manner;
   private final ConsonantPlace place;
   private final ConsonantPressure pressure;
@@ -293,12 +308,26 @@ public enum Consonant {
    *
    * @return the manner, place, pressure, and voicing information for a specific consonant
    */
-  public List<String> getConsonantDescription() {
-    final ArrayList<String> descriptiveStrings = new ArrayList<>();
+  public Set<String> getConsonantDescription() {
+    final Set<String> descriptiveStrings = new HashSet<>();
+    descriptiveStrings.add(this.getIpaSymbol());
+    descriptiveStrings.add(Consonant.class.getSimpleName().toUpperCase());
     descriptiveStrings.add(this.place.name());
     descriptiveStrings.add(this.manner.name());
     descriptiveStrings.add(this.pressure.name());
     descriptiveStrings.add(this.voicing.name());
+
+    if (this.manner.name().contains(FRICATIVE)) {
+      descriptiveStrings.add(FRICATIVE);
+    }
+
+    if (this.manner.name().contains(AFFRICATE)) {
+      descriptiveStrings.add(AFFRICATE);
+    }
+
+    if (this.manner.name().contains(APPROXIMANT)) {
+      descriptiveStrings.add(APPROXIMANT);
+    }
 
     return descriptiveStrings;
   }

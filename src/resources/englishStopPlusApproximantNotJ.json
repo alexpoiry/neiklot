@@ -4,6 +4,7 @@
   },
   "ruleIdentifier" : "Stop plus approximant",
   "initialDefinition" : [ "STOP" ],
-  "validSubsequents" : [ "APPROXIMANT", "LATERAL_APPROXIMANT" ],
+  "logicalAndInclusions" : [ "APPROXIMANT" ],
+  "logicalOrInclusions" : [ ],
   "exceptions" : [ "j" ]
 }

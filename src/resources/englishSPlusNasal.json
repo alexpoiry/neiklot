@@ -1,0 +1,10 @@
+{
+  "languageIdentifier" : {
+    "languageName" : "English"
+  },
+  "ruleIdentifier" : "s plus nasal other than velar nasal",
+  "initialDefinition" : [ "s" ],
+  "logicalAndInclusions" : [ "NASAL" ],
+  "logicalOrInclusions" : [ ],
+  "exceptions" : [ "ŋ" ]
+}
