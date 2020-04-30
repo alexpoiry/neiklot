@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import java.io.File;
 import java.io.IOException;
-import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,30 +31,63 @@ public class LangMain {
 
       final SyllableStructure syllableStructure = new SyllableStructure("CCCVCCCCC", 3, 1, 5);
 
-      final Set<OnsetRule> onsetRules = new HashSet<>();
+      final Set<OnsetCodaRule> onsetCodaRules = new HashSet<>();
 
-      final OnsetRule engRule1
-          = mapper.readValue(new File("./src/resources/englishStopPlusApproximantNotJ.json"), OnsetRule.class);
-      final OnsetRule engRule2
-          = mapper.readValue(new File("./src/resources/englishVoicelessFricativePlusApproximantNotJ.json"),
-          OnsetRule.class);
-      final OnsetRule engRule3
-          = mapper.readValue(new File("./src/resources/englishNoVelarNasal.json"), OnsetRule.class);
-      final OnsetRule engRule4
-          = mapper.readValue(new File("./src/resources/englishSPlusVoicelessStop.json"), OnsetRule.class);
-      final OnsetRule engRule5
-          = mapper.readValue(new File("./src/resources/englishSPlusNasal.json"), OnsetRule.class);
-      final OnsetRule engRule6
-          = mapper.readValue(new File("./src/resources/englishSPlusVoicelessFricative.json"), OnsetRule.class);
+      final OnsetCodaRule engRule1
+          = mapper.readValue(new File("./src/resources/modEngOnStopPlusApproximant.json"), OnsetCodaRule.class);
+      final OnsetCodaRule engRule2
+          = mapper.readValue(new File("./src/resources/modEngOnVoicelessFricativePlusApproximant.json"),
+          OnsetCodaRule.class);
+      final OnsetCodaRule engRule3
+          = mapper.readValue(new File("./src/resources/modEngOnNoVelarNasal.json"), OnsetCodaRule.class);
+      final OnsetCodaRule engRule4
+          = mapper.readValue(new File("./src/resources/modEngOnSPlusVoicelessStop.json"), OnsetCodaRule.class);
+      final OnsetCodaRule engRule5
+          = mapper.readValue(new File("./src/resources/modEngOnSPlusNasal.json"), OnsetCodaRule.class);
+      final OnsetCodaRule engRule6
+          = mapper.readValue(new File("./src/resources/modEngOnSPlusVoicelessFricative.json"), OnsetCodaRule.class);
 
-      onsetRules.add(engRule1);
-      onsetRules.add(engRule2);
+      final OnsetCodaRule engRule7
+          = mapper.readValue(new File("./src/resources/modEngCoLateralApproximantPlusFricative.json"),
+          OnsetCodaRule.class);
+      final OnsetCodaRule engRule8
+          = mapper.readValue(new File("./src/resources/modEngCoLateralApproximantPlusNasal.json"),
+          OnsetCodaRule.class);
+      final OnsetCodaRule engRule9
+          = mapper.readValue(new File("./src/resources/modEngCoLateralApproximantPlusStopAffricate.json"),
+          OnsetCodaRule.class);
+      final OnsetCodaRule engRule10
+          = mapper.readValue(new File("./src/resources/modEngCoNasalPlusFricative.json"), OnsetCodaRule.class);
+      final OnsetCodaRule engRule11
+          = mapper.readValue(new File("./src/resources/modEngCoRPlusFricative.json"), OnsetCodaRule.class);
+      final OnsetCodaRule engRule12
+          = mapper.readValue(new File("./src/resources/modEngCoRPlusNasal.json"), OnsetCodaRule.class);
+      final OnsetCodaRule engRule13
+          = mapper.readValue(new File("./src/resources/modEngCoRPlusStopOrAffricate.json"), OnsetCodaRule.class);
+      final OnsetCodaRule engRule14
+          = mapper.readValue(new File("./src/resources/modEngCoStopPlusVoicelessFricative.json"),
+          OnsetCodaRule.class);
+      final OnsetCodaRule engRule15
+          = mapper.readValue(new File("./src/resources/modEngCoVoicelessFricativePlusVoicelessStop.json"),
+          OnsetCodaRule.class);
+
+      onsetCodaRules.add(engRule1);
+      onsetCodaRules.add(engRule2);
       //onsetRules.add(engRule3);
-      onsetRules.add(engRule4);
-      onsetRules.add(engRule5);
-      onsetRules.add(engRule6);
+      onsetCodaRules.add(engRule4);
+      onsetCodaRules.add(engRule5);
+      onsetCodaRules.add(engRule6);
+      onsetCodaRules.add(engRule7);
+      onsetCodaRules.add(engRule8);
+      onsetCodaRules.add(engRule9);
+      onsetCodaRules.add(engRule10);
+      onsetCodaRules.add(engRule11);
+      onsetCodaRules.add(engRule12);
+      onsetCodaRules.add(engRule13);
+      onsetCodaRules.add(engRule14);
+      onsetCodaRules.add(engRule15);
 
-      final Word word = new Word(syllableStructure, englishDef, onsetRules);
+      final Word word = new Word(syllableStructure, englishDef, onsetCodaRules);
       System.out.println(word.generateMonosyllable());
 
     } catch (JsonGenerationException ex) {

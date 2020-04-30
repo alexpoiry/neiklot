@@ -3,6 +3,7 @@
     "languageName" : "English"
   },
   "ruleIdentifier" : "s plus nasal other than velar nasal",
+  "ruleType" : "ONSET",
   "initialDefinition" : [ "s" ],
   "logicalAndInclusions" : [ "NASAL" ],
   "logicalOrInclusions" : [ ],

@@ -1,0 +1,11 @@
+{
+  "languageIdentifier" : {
+    "languageName" : "English"
+  },
+  "ruleIdentifier" : "Lateral approximant plus nasal",
+  "ruleType" : "CODA",
+  "initialDefinition" : [ "LATERAL_APPROXIMANT" ],
+  "logicalAndInclusions" : [ "NASAL" ],
+  "logicalOrInclusions" : [ ],
+  "exceptions" : [ ]
+}

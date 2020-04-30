@@ -3,6 +3,7 @@
     "languageName" : "English"
   },
   "ruleIdentifier" : "Stop plus approximant",
+  "ruleType" : "ONSET",
   "initialDefinition" : [ "STOP" ],
   "logicalAndInclusions" : [ "APPROXIMANT" ],
   "logicalOrInclusions" : [ ],

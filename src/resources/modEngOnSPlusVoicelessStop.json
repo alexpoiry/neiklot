@@ -3,6 +3,7 @@
     "languageName" : "English"
   },
   "ruleIdentifier" : "s plus voiceless stop",
+  "ruleType" : "ONSET",
   "initialDefinition" : [ "s" ],
   "logicalAndInclusions" : [ "STOP", "UNVOICED" ],
   "logicalOrInclusions" : [ ],

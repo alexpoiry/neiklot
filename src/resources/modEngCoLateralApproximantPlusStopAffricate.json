@@ -1,0 +1,11 @@
+{
+  "languageIdentifier" : {
+    "languageName" : "English"
+  },
+  "ruleIdentifier" : "Lateral approximant plus stop or affricate",
+  "ruleType" : "CODA",
+  "initialDefinition" : [ "LATERAL_APPROXIMANT" ],
+  "logicalAndInclusions" : [ ],
+  "logicalOrInclusions" : [ "STOP", "AFFRICATE" ],
+  "exceptions" : [ ]
+}

@@ -1,0 +1,11 @@
+{
+  "languageIdentifier" : {
+    "languageName" : "English"
+  },
+  "ruleIdentifier" : "Lateral approximant plus fricative",
+  "ruleType" : "CODA",
+  "initialDefinition" : [ "LATERAL_APPROXIMANT" ],
+  "logicalAndInclusions" : [ "FRICATIVE" ],
+  "logicalOrInclusions" : [ ],
+  "exceptions" : [ ]
+}

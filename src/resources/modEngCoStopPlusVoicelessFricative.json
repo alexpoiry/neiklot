@@ -1,0 +1,11 @@
+{
+  "languageIdentifier" : {
+    "languageName" : "English"
+  },
+  "ruleIdentifier" : "Stop plus voiceless fricative",
+  "ruleType" : "CODA",
+  "initialDefinition" : [ "STOP" ],
+  "logicalAndInclusions" : [ "UNVOICED", "FRICATIVE" ],
+  "logicalOrInclusions" : [ ],
+  "exceptions" : [ ]
+}

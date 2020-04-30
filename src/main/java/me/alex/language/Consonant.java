@@ -177,8 +177,6 @@ public enum Consonant {
   ʍ(ConsonantManner.APPROXIMANT, ConsonantPlace.LABIAL_VELAR, ConsonantPressure.PULMONIC, ConsonantVoicing.UNVOICED),
   w(ConsonantManner.APPROXIMANT, ConsonantPlace.LABIAL_VELAR, ConsonantPressure.PULMONIC, ConsonantVoicing.VOICED);
 
-  //"ɥ̊", "ɥ", "ʍ", "w"
-
   /*
     pʼ(manner, ConsonantPlace., pressure, ConsonantVoicing.),
     tʼ(manner, ConsonantPlace., pressure, ConsonantVoicing.),

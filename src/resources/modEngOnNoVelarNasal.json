@@ -3,6 +3,7 @@
     "languageName" : "English"
   },
   "ruleIdentifier" : "No velar nasal",
+  "ruleType" : "ONSET",
   "initialDefinition" : [ "CONSONANT" ],
   "logicalAndInclusions" : [ ],
   "logicalOrInclusions" : [ ],

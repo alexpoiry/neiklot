@@ -3,6 +3,7 @@
     "languageName" : "English"
   },
   "ruleIdentifier" : "Voiceless fricative plus approximant",
+  "ruleType" : "ONSET",
   "initialDefinition" : [ "UNVOICED", "FRICATIVE" ],
   "logicalAndInclusions" : [ ],
   "logicalOrInclusions" : [ "APPROXIMANT" ],

@@ -1,0 +1,11 @@
+{
+  "languageIdentifier" : {
+    "languageName" : "English"
+  },
+  "ruleIdentifier" : "R plus nasal or lateral",
+  "ruleType" : "CODA",
+  "initialDefinition" : [ "ɹ" ],
+  "logicalAndInclusions" : [ ],
+  "logicalOrInclusions" : [ "NASAL", "LATERAL" ],
+  "exceptions" : [ ]
+}

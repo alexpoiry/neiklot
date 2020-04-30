@@ -1,0 +1,11 @@
+{
+  "languageIdentifier" : {
+    "languageName" : "English"
+  },
+  "ruleIdentifier" : "R plus fricative",
+  "ruleType" : "CODA",
+  "initialDefinition" : [ "ɹ" ],
+  "logicalAndInclusions" : [ "FRICATIVE" ],
+  "logicalOrInclusions" : [ ],
+  "exceptions" : [ ]
+}

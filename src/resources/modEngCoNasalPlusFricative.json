@@ -1,0 +1,11 @@
+{
+  "languageIdentifier" : {
+    "languageName" : "English"
+  },
+  "ruleIdentifier" : "Nasal plus fricative",
+  "ruleType" : "CODA",
+  "initialDefinition" : [ "NASAL" ],
+  "logicalAndInclusions" : [ "FRICATIVE" ],
+  "logicalOrInclusions" : [ ],
+  "exceptions" : [ ]
+}

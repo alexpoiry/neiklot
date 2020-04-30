@@ -10,9 +10,10 @@ import java.util.stream.Collectors;
 /**
  * This class represents rules for valid onset configurations.
  */
-public class OnsetRule {
+public class OnsetCodaRule {
   private LanguageIdentifier languageIdentifier;
   private String ruleIdentifier;
+  private RuleType ruleType;
   private List<String> initialDefinition;
   private List<String> logicalAndInclusions;
   private List<String> logicalOrInclusions;
@@ -21,7 +22,7 @@ public class OnsetRule {
   /**
    * Default constructor (for Jackson purposes). May be able to remove.
    */
-  public OnsetRule() {}
+  public OnsetCodaRule() {}
 
   /**
    * Determines the valid consonants that can follow an initial consonant based upon provided rules.
@@ -69,6 +70,14 @@ public class OnsetRule {
     this.languageIdentifier = languageIdentifier;
   }
 
+  public RuleType getRuleType() {
+    return ruleType;
+  }
+
+  public void setRuleType(final RuleType ruleType) {
+    this.ruleType = ruleType;
+  }
+
   public String getRuleIdentifier() {
     return ruleIdentifier;
   }
@@ -114,6 +123,7 @@ public class OnsetRule {
     return MoreObjects.toStringHelper(this)
       .add("languageIdentifier", languageIdentifier)
       .add("ruleIdentifier", ruleIdentifier)
+      .add("ruleType", ruleType)
       .add("initialDefinition", initialDefinition)
       .add("logicalAndInclusions", logicalAndInclusions)
       .add("logicalOrInclusions", logicalOrInclusions)
@@ -129,18 +139,24 @@ public class OnsetRule {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    final OnsetRule onsetRule = (OnsetRule) o;
-    return Objects.equal(getLanguageIdentifier(), onsetRule.getLanguageIdentifier())
-      && Objects.equal(getRuleIdentifier(), onsetRule.getRuleIdentifier())
-      && Objects.equal(getInitialDefinition(), onsetRule.getInitialDefinition())
-      && Objects.equal(getLogicalAndInclusions(), onsetRule.getLogicalAndInclusions())
-      && Objects.equal(getLogicalOrInclusions(), onsetRule.getLogicalOrInclusions())
-      && Objects.equal(getExceptions(), onsetRule.getExceptions());
+    final OnsetCodaRule that = (OnsetCodaRule) o;
+    return Objects.equal(getLanguageIdentifier(), that.getLanguageIdentifier())
+      && Objects.equal(getRuleIdentifier(), that.getRuleIdentifier())
+      && getRuleType() == that.getRuleType()
+      && Objects.equal(getInitialDefinition(), that.getInitialDefinition())
+      && Objects.equal(getLogicalAndInclusions(), that.getLogicalAndInclusions())
+      && Objects.equal(getLogicalOrInclusions(), that.getLogicalOrInclusions())
+      && Objects.equal(getExceptions(), that.getExceptions());
   }
 
   @Override
   public int hashCode() {
-    return Objects.hashCode(getLanguageIdentifier(), getRuleIdentifier(), getInitialDefinition(), getLogicalAndInclusions(),
-      getLogicalOrInclusions(), getExceptions());
+    return Objects.hashCode(getLanguageIdentifier(), getRuleIdentifier(), getRuleType(), getInitialDefinition(),
+      getLogicalAndInclusions(), getLogicalOrInclusions(), getExceptions());
+  }
+
+  public enum RuleType {
+    ONSET,
+    CODA;
   }
 }

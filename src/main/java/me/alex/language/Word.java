@@ -13,7 +13,7 @@ import java.util.Set;
 public class Word {
   private final SyllableStructure syllableStructure;
   private final PhonologyDefinition phonologyDefinition;
-  private final Set<OnsetRule> onsetRules;
+  private final Set<OnsetCodaRule> onsetCodaRules;
   private final Random random;
 
   /**
@@ -23,10 +23,10 @@ public class Word {
    * @param phonologyDefinition the word's {@link PhonologyDefinition}
    */
   public Word(final SyllableStructure syllableStructure, final PhonologyDefinition phonologyDefinition,
-              final Set<OnsetRule> onsetRules) {
+              final Set<OnsetCodaRule> onsetCodaRules) {
     this.syllableStructure = syllableStructure;
     this.phonologyDefinition = phonologyDefinition;
-    this.onsetRules = onsetRules;
+    this.onsetCodaRules = onsetCodaRules;
     this.random = new Random();
   }
 
@@ -40,15 +40,16 @@ public class Word {
     final EnumSet<Consonant> validConsonants = phonologyDefinition.getConsonants();
     final EnumSet<Vowel> validVowels = phonologyDefinition.getVowels();
     final int onsetSize = getRandomIntBetweenTwoValues(0, syllableStructure.onsetSize);
+    final int codaSize = getRandomIntBetweenTwoValues(0, syllableStructure.codaSize);
 
-    final Syllable syllable = new Syllable(onsetRules, validConsonants, onsetSize);
+
+    final Syllable syllable = new Syllable(onsetCodaRules, validConsonants, onsetSize, codaSize);
     syllable.getOnset().forEach(consonant -> word.append(consonant.getIpaSymbol()));
 
     final Optional<Vowel> vowel = getRandomVowel(validVowels);
     vowel.ifPresent(word::append);
 
-    final int codaSize = getRandomIntBetweenTwoValues(0, syllableStructure.codaSize);
-    getRandomConsontants(validConsonants, codaSize).forEach(x -> word.append(x.name()));
+    syllable.getCoda().forEach(consonant -> word.append(consonant.getIpaSymbol()));
 
     return word.toString();
   }

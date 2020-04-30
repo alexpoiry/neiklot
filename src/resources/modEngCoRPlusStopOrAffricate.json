@@ -1,0 +1,11 @@
+{
+  "languageIdentifier" : {
+    "languageName" : "English"
+  },
+  "ruleIdentifier" : "R plus stop or affricate",
+  "ruleType" : "CODA",
+  "initialDefinition" : [ "ɹ" ],
+  "logicalAndInclusions" : [ ],
+  "logicalOrInclusions" : [ "STOP", "AFFRICATE" ],
+  "exceptions" : [ ]
+}
