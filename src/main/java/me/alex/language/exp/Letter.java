@@ -1,4 +1,6 @@
-package me.alex.language;
+package me.alex.language.exp;
+
+import me.alex.language.LanguageIdentifier;
 
 public class Letter {
   private final Character letter;

@@ -1,4 +1,4 @@
-package me.alex.language;
+package me.alex.language.phoneme;
 
 import java.util.Arrays;
 

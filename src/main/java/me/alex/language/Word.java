@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
+import me.alex.language.phoneme.Consonant;
+import me.alex.language.phoneme.Vowel;
 
 /**
  * A class that represents a single word.

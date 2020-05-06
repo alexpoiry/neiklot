@@ -3,6 +3,8 @@ package me.alex.language;
 import com.google.common.base.Objects;
 import java.util.EnumSet;
 import java.util.Set;
+import me.alex.language.phoneme.Consonant;
+import me.alex.language.phoneme.Vowel;
 
 /**
  * This class represents a phonological definition for a specific language, including its valid consonants, vowels, and

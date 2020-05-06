@@ -1,9 +1,8 @@
-package me.alex.language;
+package me.alex.language.phoneme;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
-import java.util.Random;
 
 /**
  * A class representing all valid IPA vowels along with their backness, height, and roundness of articulation.

@@ -1,6 +1,7 @@
 package me.alex.language;
 
 import java.util.Optional;
+import me.alex.language.phoneme.Consonant;
 
 /**
  * A class that represents the nucleus of a syllable.

@@ -2,6 +2,7 @@ package me.alex.language;
 
 import com.google.common.base.Objects;
 import java.util.EnumSet;
+import me.alex.language.phoneme.Vowel;
 
 /**
  * This class represents vowel sounds in groups, such as diphthongs.

@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.stream.Collectors;
+import me.alex.language.phoneme.Consonant;
 
 /**
  * This class represents rules for valid onset configurations.
